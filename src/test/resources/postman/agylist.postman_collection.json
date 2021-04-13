@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "74fa1a87-d8be-4216-b080-819167fdf1a2",
+		"name": "AgyleCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Liveness",
+			"item": [
+				{
+					"name": "Check liveness",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/liveness",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"liveness"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ProfileController",
+			"item": [
+				{
+					"name": "Create profile",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"emailAddress\": \"john.doe@gmail.com\",\r\n    \"role\": \"Manager\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get profile by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/profile/?emailAddress=john.doe@gmail.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								""
+							],
+							"query": [
+								{
+									"key": "emailAddress",
+									"value": "john.doe@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get profile by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/profile/841e96eb-a143-47ab-b875-a3126ae0b15b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								"841e96eb-a143-47ab-b875-a3126ae0b15b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete profile by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/profile/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"lastName\": \"TestPatch\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/profile/d86220de-d8d2-4e13-b016-e59c8ca1c295",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								"d86220de-d8d2-4e13-b016-e59c8ca1c295"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(LivenessController.ROOT)
@@ -17,7 +19,7 @@ public class LivenessController {
   public static final String ROOT = "/liveness";
 
   @GetMapping
-  public LivenessState liveness() {
-    return availability.getLivenessState();
+  public Map<String, LivenessState> liveness() {
+    return Map.of("state", availability.getLivenessState());
   }
 }
