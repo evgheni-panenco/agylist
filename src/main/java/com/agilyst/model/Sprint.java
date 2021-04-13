@@ -16,6 +16,7 @@ public class Sprint {
   @GeneratedValue
   private UUID sprintId;
   private String sprintName;
+
   private Set<Task> tasks;
 
   private OffsetDateTime createdOn;
