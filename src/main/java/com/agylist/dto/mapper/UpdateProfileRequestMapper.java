@@ -1,15 +1,13 @@
-package com.agilyst.dto.mapper;
+package com.agylist.dto.mapper;
 
-import java.util.Objects;
-import java.util.function.BiFunction;
-
+import com.agylist.dto.UpdateProfileRequest;
+import com.agylist.model.Profile;
+import lombok.val;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import com.agilyst.dto.UpdateProfileRequest;
-import com.agilyst.model.Profile;
-
-import lombok.val;
+import java.util.Objects;
+import java.util.function.BiFunction;
 
 @Component
 public class UpdateProfileRequestMapper implements BiFunction<UpdateProfileRequest, Profile, Profile> {

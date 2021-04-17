@@ -1,4 +1,4 @@
-package com.agilyst.controller;
+package com.agylist.controller;
 
 import java.util.Map;
 

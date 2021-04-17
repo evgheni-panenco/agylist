@@ -1,8 +1,8 @@
-package com.agilyst.dto;
+package com.agylist.dto;
 
 import java.util.UUID;
 
-import com.agilyst.model.Role;
+import com.agylist.model.Role;
 
 import lombok.Data;
 

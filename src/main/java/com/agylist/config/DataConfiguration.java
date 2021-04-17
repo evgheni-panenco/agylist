@@ -1,4 +1,4 @@
-package com.agilyst.config;
+package com.agylist.config;
 
 import javax.sql.DataSource;
 

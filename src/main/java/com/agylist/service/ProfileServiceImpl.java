@@ -1,18 +1,19 @@
-package com.agilyst.service;
+package com.agylist.service;
 
-import com.agilyst.dto.ProfileDTO;
-import com.agilyst.dto.UpdateProfileRequest;
-import com.agilyst.dto.mapper.ProfileMapper;
-import com.agilyst.dto.mapper.UpdateProfileRequestMapper;
-import com.agilyst.exception.ResourceAlreadyExist;
-import com.agilyst.exception.ResourceNotFoundException;
-import com.agilyst.model.Profile;
-import com.agilyst.repository.ProfileRepository;
+import com.agylist.dto.ProfileDTO;
+import com.agylist.dto.UpdateProfileRequest;
+import com.agylist.dto.mapper.ProfileMapper;
+import com.agylist.dto.mapper.UpdateProfileRequestMapper;
+import com.agylist.exception.ResourceAlreadyExist;
+import com.agylist.exception.ResourceNotFoundException;
+import com.agylist.model.Profile;
+import com.agylist.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -36,12 +37,6 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Profile getProfileByEmail(final String emailAddress) {
-		return profileRepository.findByEmailAddress(emailAddress).orElseThrow(
-				() -> new ResourceNotFoundException("Cannot find profile with specified email - " + emailAddress));
-	}
-
-	@Override
 	public Profile getProfileById(final String profileId) {
 		return profileRepository.findById(UUID.fromString(profileId)).orElseThrow(
 				() -> new ResourceNotFoundException("Cannot find profile with specified ID - " + profileId));
@@ -62,5 +57,10 @@ public class ProfileServiceImpl implements ProfileService {
 				() -> new ResourceNotFoundException("Cannot find profile for specified ID - " + profileId));
 		updateProfileRequestMapper.apply(updateProfileRequest, profile);
 		return profileRepository.save(profile);
+	}
+
+	@Override
+	public List<Profile> getProfiles() {
+		return profileRepository.findAll();
 	}
 }

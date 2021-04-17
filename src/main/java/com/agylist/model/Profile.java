@@ -1,13 +1,12 @@
-package com.agilyst.model;
+package com.agylist.model;
 
-import java.util.UUID;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Data;
+import java.util.UUID;
 
 @Data
 @Entity

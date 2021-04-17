@@ -1,4 +1,4 @@
-package com.agilyst.model;
+package com.agylist.model;
 
 import java.time.OffsetDateTime;
 import java.util.Set;

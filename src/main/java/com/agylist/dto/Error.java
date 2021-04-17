@@ -1,4 +1,4 @@
-package com.agilyst.dto;
+package com.agylist.dto;
 
 import java.time.OffsetDateTime;
 

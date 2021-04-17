@@ -1,8 +1,8 @@
-package com.agilyst.controller;
+package com.agylist.controller;
 
-import com.agilyst.dto.Error;
-import com.agilyst.exception.ResourceAlreadyExist;
-import com.agilyst.exception.ResourceNotFoundException;
+import com.agylist.dto.Error;
+import com.agylist.exception.ResourceAlreadyExist;
+import com.agylist.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

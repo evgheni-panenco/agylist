@@ -1,4 +1,4 @@
-package com.agilyst.exception;
+package com.agylist.exception;
 
 public class ResourceAlreadyExist extends RuntimeException {
 

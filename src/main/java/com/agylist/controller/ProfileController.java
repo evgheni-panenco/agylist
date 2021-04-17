@@ -1,5 +1,7 @@
-package com.agilyst.controller;
+package com.agylist.controller;
 
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agilyst.dto.ProfileDTO;
-import com.agilyst.dto.UpdateProfileRequest;
-import com.agilyst.model.Profile;
-import com.agilyst.service.ProfileService;
+import com.agylist.assembler.ProfileModelAssembler;
+import com.agylist.dto.ProfileDTO;
+import com.agylist.dto.UpdateProfileRequest;
+import com.agylist.model.Profile;
+import com.agylist.service.ProfileService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -30,29 +32,30 @@ public class ProfileController {
 	public static final String ONE_URL = "/{profileId}";
 
 	private final ProfileService profileService;
+	private final ProfileModelAssembler profileModelAssembler;
 
 	@PostMapping
-	public ResponseEntity<Profile> saveProfile(@RequestBody final ProfileDTO profile) {
+	public ResponseEntity<EntityModel<Profile>> saveProfile(@RequestBody final ProfileDTO profile) {
 		log.info("Saving profile to database...");
 		val createdProfile = profileService.save(profile);
 		log.info("Profile with id - {} was saved in database", createdProfile.getProfileId());
-		return ResponseEntity.ok(createdProfile);
-	}
-
-	@GetMapping(ONE_URL)
-	public ResponseEntity<Profile> getProfileById(@PathVariable final String profileId) {
-		log.info("Getting profile by ID from database...");
-		val profile = profileService.getProfileById(profileId);
-		log.info("Response with retrieved profile");
-		return ResponseEntity.ok(profile);
+		return ResponseEntity.ok(profileModelAssembler.toModel(createdProfile));
 	}
 
 	@GetMapping
-	public ResponseEntity<Profile> getProfileByEmail(@RequestParam final String emailAddress) {
-		log.info("Getting profile by email from database...");
-		val profile = profileService.getProfileByEmail(emailAddress);
+	public ResponseEntity<CollectionModel<EntityModel<Profile>>> getProfiles() {
+		log.info("Getting list of profiles from database...");
+		val profiles = profileService.getProfiles();
+		log.info("Response with retrieved list of profiles");
+		return ResponseEntity.ok(profileModelAssembler.toCollectionModel(profiles));
+	}
+
+	@GetMapping(ONE_URL)
+	public ResponseEntity<EntityModel<Profile>> getProfileById(@PathVariable final String profileId) {
+		log.info("Getting profile by ID from database...");
+		val profile = profileService.getProfileById(profileId);
 		log.info("Response with retrieved profile");
-		return ResponseEntity.ok(profile);
+		return ResponseEntity.ok(profileModelAssembler.toModel(profile));
 	}
 
 	@DeleteMapping(ONE_URL)
@@ -64,11 +67,11 @@ public class ProfileController {
 	}
 
 	@PatchMapping(ONE_URL)
-	public ResponseEntity<Profile> updateProfile(@PathVariable final String profileId,
+	public ResponseEntity<EntityModel<Profile>> updateProfile(@PathVariable final String profileId,
 			@RequestBody final UpdateProfileRequest updateProfileRequest) {
 		log.info("Updating profile...");
 		val profile = profileService.updateProfileById(updateProfileRequest, profileId);
 		log.info("Profile with id - {} was updated", profileId);
-		return ResponseEntity.ok(profile);
+		return ResponseEntity.ok(profileModelAssembler.toModel(profile));
 	}
 }

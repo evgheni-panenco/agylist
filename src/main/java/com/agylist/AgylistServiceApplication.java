@@ -1,4 +1,4 @@
-package com.agilyst;
+package com.agylist;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,17 +1,19 @@
-package com.agilyst.service;
+package com.agylist.service;
 
-import com.agilyst.dto.ProfileDTO;
-import com.agilyst.dto.UpdateProfileRequest;
-import com.agilyst.model.Profile;
+import com.agylist.dto.ProfileDTO;
+import com.agylist.dto.UpdateProfileRequest;
+import com.agylist.model.Profile;
+
+import java.util.List;
 
 public interface ProfileService {
 	Profile save(ProfileDTO profile);
-
-	Profile getProfileByEmail(String emailAddress);
 
 	Profile getProfileById(String profileId);
 
 	void deleteProfileById(String profileId);
 
 	Profile updateProfileById(UpdateProfileRequest updateProfileRequest, String profileId);
+
+	List<Profile> getProfiles();
 }

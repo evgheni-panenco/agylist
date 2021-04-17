@@ -1,6 +1,6 @@
-package com.agilyst.dto;
+package com.agylist.dto;
 
-import com.agilyst.model.Role;
+import com.agylist.model.Role;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
