@@ -1,11 +1,11 @@
 package com.agilyst.dto;
 
+import java.time.OffsetDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.OffsetDateTime;
 
 @Data
 @Builder
@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 public class Error {
 
-  private String exceptionName;
-  private OffsetDateTime offsetDateTime;
-  private String message;
+	private String exceptionName;
+	private OffsetDateTime offsetDateTime;
+	private String message;
 }

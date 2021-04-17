@@ -1,27 +1,28 @@
 package com.agilyst.model;
 
-import lombok.Data;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.UUID;
+
+import lombok.Data;
 
 @Data
 @Entity
 public class Profile {
 
-  @Id
-  @GeneratedValue
-  private UUID profileId;
+	@Id
+	@GeneratedValue
+	private UUID profileId;
 
-  private String firstName;
-  private String lastName;
-  private String emailAddress;
+	private String firstName;
+	private String lastName;
+	private String emailAddress;
 
-  @Enumerated
-  private Role role;
+	@Enumerated
+	private Role role;
 
-  private boolean isActive;
+	private boolean isActive;
 }

@@ -1,21 +1,22 @@
 package com.agilyst.model;
 
-import lombok.Data;
+import java.util.UUID;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.UUID;
+
+import lombok.Data;
 
 @Data
-//@Entity
+// @Entity
 public class Task {
 
-  @Id
-  @GeneratedValue
-  private UUID taskId;
-  private String title;
-  private String description;
-  private Profile assignee;
-  private int storyPoints;
-  private Status status;
+	@Id
+	@GeneratedValue
+	private UUID taskId;
+	private String title;
+	private String description;
+	private Profile assignee;
+	private int storyPoints;
+	private Status status;
 }
