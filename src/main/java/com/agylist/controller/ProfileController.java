@@ -1,5 +1,13 @@
 package com.agylist.controller;
 
+import com.agylist.assembler.ProfileModelAssembler;
+import com.agylist.dto.ProfileDTO;
+import com.agylist.dto.UpdateProfileRequest;
+import com.agylist.model.Profile;
+import com.agylist.service.ProfileService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +20,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.agylist.assembler.ProfileModelAssembler;
-import com.agylist.dto.ProfileDTO;
-import com.agylist.dto.UpdateProfileRequest;
-import com.agylist.model.Profile;
-import com.agylist.service.ProfileService;
-
-import lombok.RequiredArgsConstructor;
-import lombok.val;
-import lombok.extern.slf4j.Slf4j;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 
 @Slf4j
 @RestController
@@ -30,12 +31,13 @@ public class ProfileController {
 
 	public static final String BASE_URL = "/profile";
 	public static final String ONE_URL = "/{profileId}";
+	public static final String UUID_PATTERN = "([a-f0-9]{8}(-[a-f0-9]{4}){4}[a-f0-9]{8})";
 
 	private final ProfileService profileService;
 	private final ProfileModelAssembler profileModelAssembler;
 
 	@PostMapping
-	public ResponseEntity<EntityModel<Profile>> saveProfile(@RequestBody final ProfileDTO profile) {
+	public ResponseEntity<EntityModel<Profile>> saveProfile(@RequestBody @Valid final ProfileDTO profile) {
 		log.info("Saving profile to database...");
 		val createdProfile = profileService.save(profile);
 		log.info("Profile with id - {} was saved in database", createdProfile.getProfileId());
@@ -51,7 +53,8 @@ public class ProfileController {
 	}
 
 	@GetMapping(ONE_URL)
-	public ResponseEntity<EntityModel<Profile>> getProfileById(@PathVariable final String profileId) {
+	public ResponseEntity<EntityModel<Profile>> getProfileById(
+			@PathVariable @Pattern(regexp = UUID_PATTERN) final String profileId) {
 		log.info("Getting profile by ID from database...");
 		val profile = profileService.getProfileById(profileId);
 		log.info("Response with retrieved profile");
@@ -59,7 +62,8 @@ public class ProfileController {
 	}
 
 	@DeleteMapping(ONE_URL)
-	public ResponseEntity<Void> deleteProfile(@PathVariable final String profileId) {
+	public ResponseEntity<Void> deleteProfileById(
+			@PathVariable @Pattern(regexp = UUID_PATTERN) final String profileId) {
 		log.info("Deleting profile from database...");
 		profileService.deleteProfileById(profileId);
 		log.info("Profile with id - {} was deleted from database", profileId);
@@ -67,7 +71,8 @@ public class ProfileController {
 	}
 
 	@PatchMapping(ONE_URL)
-	public ResponseEntity<EntityModel<Profile>> updateProfile(@PathVariable final String profileId,
+	public ResponseEntity<EntityModel<Profile>> updateProfile(
+			@PathVariable @Pattern(regexp = UUID_PATTERN) final String profileId,
 			@RequestBody final UpdateProfileRequest updateProfileRequest) {
 		log.info("Updating profile...");
 		val profile = profileService.updateProfileById(updateProfileRequest, profileId);

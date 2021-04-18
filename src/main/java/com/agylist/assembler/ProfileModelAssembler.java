@@ -16,14 +16,15 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
 public class ProfileModelAssembler implements RepresentationModelAssembler<Profile, EntityModel<Profile>> {
-
 	@Override
 	public EntityModel<Profile> toModel(final Profile profile) {
 		return EntityModel
 				.of(profile,
-						linkTo(methodOn(ProfileController.class).getProfileById(profile.getProfileId().toString()))
-								.withSelfRel(),
-						linkTo(methodOn(ProfileController.class).getProfiles()).withRel("profiles"));
+						linkTo(methodOn(ProfileController.class)
+										.getProfileById(profile.getProfileId().toString()))
+										.withSelfRel(),
+						linkTo(methodOn(ProfileController.class).getProfiles())
+										.withRel("profiles"));
 	}
 
 	public CollectionModel<EntityModel<Profile>> toCollectionModel(final List<Profile> profiles) {

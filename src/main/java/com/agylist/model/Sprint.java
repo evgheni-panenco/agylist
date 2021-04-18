@@ -1,13 +1,12 @@
 package com.agylist.model;
 
-import java.time.OffsetDateTime;
-import java.util.Set;
-import java.util.UUID;
+import lombok.Data;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Data;
+import java.time.OffsetDateTime;
+import java.util.Set;
+import java.util.UUID;
 
 @Data
 // @Entity
