@@ -9,14 +9,13 @@ import com.agylist.exception.ResourceNotFoundException;
 import com.agylist.model.Profile;
 import com.agylist.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
@@ -24,6 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
 	private final ProfileRepository profileRepository;
 	private final ProfileMapper profileMapper;
 	private final UpdateProfileRequestMapper updateProfileRequestMapper;
+	private final TaskService taskService;
 
 	@Override
 	public Profile save(final ProfileDTO profileDTO) {
@@ -43,10 +43,12 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteProfileById(final String profileId) {
 		val id = UUID.fromString(profileId);
-		profileRepository.findById(id).orElseThrow(
+		val profile = profileRepository.findById(id).orElseThrow(
 				() -> new ResourceNotFoundException("Cannot find profile for specified ID - " + profileId));
+		taskService.unassigneTasks(profile);
 		profileRepository.deleteById(id);
 	}
 

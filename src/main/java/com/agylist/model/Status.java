@@ -1,12 +1,13 @@
 package com.agylist.model;
 
-import javax.persistence.Id;
-
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Getter
-// @Entity
+@Entity
 @RequiredArgsConstructor
 public enum Status {
 
