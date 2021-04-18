@@ -1,6 +1,6 @@
 package com.agylist.model;
 
-import lombok.Data;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -8,7 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.util.UUID;
+
+import lombok.Data;
 
 @Data
 @Entity

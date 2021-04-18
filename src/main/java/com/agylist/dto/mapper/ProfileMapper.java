@@ -1,12 +1,14 @@
 package com.agylist.dto.mapper;
 
-import com.agylist.dto.ProfileDTO;
-import com.agylist.model.Profile;
-import lombok.val;
+import java.util.function.Function;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Function;
+import com.agylist.dto.ProfileDTO;
+import com.agylist.model.Profile;
+
+import lombok.val;
 
 @Component
 public class ProfileMapper implements Function<ProfileDTO, Profile> {

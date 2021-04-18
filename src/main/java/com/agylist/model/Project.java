@@ -1,20 +1,25 @@
 package com.agylist.model;
 
-import java.util.Set;
-import java.util.UUID;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import java.util.List;
+import java.util.UUID;
+
 @Data
-// @Entity
+@Entity
 public class Project {
 
 	@Id
 	@GeneratedValue
 	private UUID projectId;
 	private String projectName;
-	private Set<Sprint> sprints;
+
+	@ManyToOne
+	@JoinColumn
+	private List<Sprint> sprints;
 }

@@ -1,13 +1,10 @@
 package com.agylist.controller;
 
-import com.agylist.assembler.TaskModelAssembler;
-import com.agylist.dto.TaskDTO;
-import com.agylist.dto.UpdateTaskRequest;
-import com.agylist.model.Task;
-import com.agylist.service.TaskService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import lombok.val;
+import static com.agylist.controller.TaskController.BASE_URL;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +18,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
+import com.agylist.assembler.TaskModelAssembler;
+import com.agylist.dto.TaskDTO;
+import com.agylist.dto.UpdateTaskRequest;
+import com.agylist.model.Task;
+import com.agylist.service.TaskService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.val;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(TaskController.BASE_URL)
+@RequestMapping(BASE_URL)
 public class TaskController {
 
 	public static final String BASE_URL = "/task";

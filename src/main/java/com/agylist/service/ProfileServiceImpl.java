@@ -1,5 +1,12 @@
 package com.agylist.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.agylist.dto.ProfileDTO;
 import com.agylist.dto.UpdateProfileRequest;
 import com.agylist.dto.mapper.ProfileMapper;
@@ -8,13 +15,9 @@ import com.agylist.exception.ResourceAlreadyExist;
 import com.agylist.exception.ResourceNotFoundException;
 import com.agylist.model.Profile;
 import com.agylist.repository.ProfileRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

@@ -1,5 +1,10 @@
 package com.agylist.service;
 
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
 import com.agylist.dto.TaskDTO;
 import com.agylist.dto.UpdateTaskRequest;
 import com.agylist.dto.mapper.TaskMapper;
@@ -10,12 +15,9 @@ import com.agylist.model.Profile;
 import com.agylist.model.Task;
 import com.agylist.repository.ProfileRepository;
 import com.agylist.repository.TaskRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor

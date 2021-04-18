@@ -12,14 +12,14 @@ import javax.validation.constraints.Size;
 @Data
 public class TaskDTO {
 
-  @NotBlank(message = "Field Title is required")
-  @Size(min = 5, max = 90, message = "The length of Title should be between 5 and 90")
-  private String title;
-  private String description;
+	@NotBlank(message = "Field Title is required")
+	@Size(min = 5, max = 90, message = "The length of Title should be between 5 and 90")
+	private String title;
+	private String description;
 
-  @NotNull
-  @Min(1)
-  @Max(13)
-  private int storyPoints;
-  private Status status;
+	@NotNull
+	@Min(1)
+	@Max(13)
+	private int storyPoints;
+	private Status status;
 }

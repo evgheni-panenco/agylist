@@ -1,10 +1,10 @@
 package com.agylist.service;
 
+import java.util.List;
+
 import com.agylist.dto.ProfileDTO;
 import com.agylist.dto.UpdateProfileRequest;
 import com.agylist.model.Profile;
-
-import java.util.List;
 
 public interface ProfileService {
 	Profile save(ProfileDTO profile);

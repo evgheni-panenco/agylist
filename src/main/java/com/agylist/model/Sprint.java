@@ -1,24 +1,36 @@
 package com.agylist.model;
 
-import lombok.Data;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.OffsetDateTime;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
-// @Entity
+@Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Sprint {
 
 	@Id
 	@GeneratedValue
 	private UUID sprintId;
+
 	private String sprintName;
 
-	private Set<Task> tasks;
+	@OneToMany
+	@JoinColumn
+	private List<Task> tasks;
 
-	private OffsetDateTime createdOn;
-	private OffsetDateTime endsOn;
+	private OffsetDateTime createdTimestamp;
 }

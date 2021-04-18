@@ -15,9 +15,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping(LivenessController.ROOT)
 public class LivenessController {
 
-	private final ApplicationAvailability availability;
-
 	public static final String ROOT = "/liveness";
+	private final ApplicationAvailability availability;
 
 	@GetMapping
 	public Map<String, LivenessState> liveness() {
