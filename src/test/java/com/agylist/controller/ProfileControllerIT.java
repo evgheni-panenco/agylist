@@ -5,13 +5,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.val;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
@@ -27,11 +25,11 @@ import static org.springframework.core.io.ResourceLoader.CLASSPATH_URL_PREFIX;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
-@ExtendWith(SpringExtension.class)
 public class ProfileControllerIT {
 
 	@Autowired
@@ -45,7 +43,8 @@ public class ProfileControllerIT {
 
 	@Test
 	public void testPost_Success() throws Exception {
-		postProfile().andExpect(jsonPath("firstName").value("John")).andExpect(jsonPath("lastName").value("Doe"))
+		postProfile().andExpect(status().is2xxSuccessful()).andExpect(jsonPath("firstName").value("John"))
+				.andExpect(jsonPath("lastName").value("Doe"))
 				.andExpect(jsonPath("emailAddress").value("john.doe@gmail.com"))
 				.andExpect(jsonPath("role").value("Manager"));
 	}
@@ -66,8 +65,9 @@ public class ProfileControllerIT {
 		return FileCopyUtils.copyToByteArray(file);
 	}
 
-	private Profile getResponse(final MvcResult postResult) throws UnsupportedEncodingException, JsonProcessingException {
-		return  mapper.readValue(postResult.getResponse().getContentAsString(), Profile.class);
+	private Profile getResponse(final MvcResult postResult)
+			throws UnsupportedEncodingException, JsonProcessingException {
+		return mapper.readValue(postResult.getResponse().getContentAsString(), Profile.class);
 	}
 
 	private ResultActions postProfile() throws Exception {

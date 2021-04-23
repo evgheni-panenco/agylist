@@ -1,21 +1,23 @@
 package com.agylist.service;
 
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
-
 import com.agylist.dto.SprintDTO;
 import com.agylist.dto.UpdateSprintRequest;
 import com.agylist.exception.ResourceAlreadyExist;
 import com.agylist.exception.ResourceNotFoundException;
+import com.agylist.exception.TaskNotClosedException;
 import com.agylist.model.Sprint;
+import com.agylist.model.SprintStatus;
 import com.agylist.repository.SprintRepository;
 import com.agylist.repository.TaskRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.stereotype.Service;
+
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.UUID;
+
+import static com.agylist.model.Status.DONE;
 
 @Service
 @RequiredArgsConstructor
@@ -78,5 +80,16 @@ public class SprintServiceImpl implements SprintService {
 		val sprint = this.getSprintById(sprintId);
 		sprint.getTasks().remove(task);
 		return sprintRepository.save(sprint);
+	}
+
+	@Override
+	public void close(String sprintId) {
+		val sprint = this.getSprintById(sprintId);
+		val hasUndoneTasks = sprint.getTasks().stream().anyMatch(task -> task.getStatus() != DONE);
+		if (hasUndoneTasks) {
+			throw new TaskNotClosedException("Cannot close sprint with unclosed task");
+		}
+		sprint.setStatus(SprintStatus.CLOSED);
+		sprintRepository.save(sprint);
 	}
 }

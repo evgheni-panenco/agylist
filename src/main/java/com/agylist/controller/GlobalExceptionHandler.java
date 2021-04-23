@@ -1,18 +1,17 @@
 package com.agylist.controller;
 
-import java.time.OffsetDateTime;
-
+import com.agylist.dto.Error;
+import com.agylist.exception.ResourceAlreadyExist;
+import com.agylist.exception.ResourceNotFoundException;
+import com.agylist.exception.TaskNotClosedException;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.agylist.dto.Error;
-import com.agylist.exception.ResourceAlreadyExist;
-import com.agylist.exception.ResourceNotFoundException;
-
-import lombok.val;
-import lombok.extern.slf4j.Slf4j;
+import java.time.OffsetDateTime;
 
 @Slf4j
 @RestControllerAdvice
@@ -28,6 +27,12 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<Error> handle(final ResourceNotFoundException ex) {
 		log.warn(ex.getMessage());
 		return build(404, ex);
+	}
+
+	@ExceptionHandler
+	public ResponseEntity<Error> handle(final TaskNotClosedException ex) {
+		log.warn(ex.getMessage());
+		return build(409, ex);
 	}
 
 	@ExceptionHandler

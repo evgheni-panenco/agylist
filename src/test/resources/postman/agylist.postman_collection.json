@@ -96,25 +96,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete profile by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "localhost:8080/profile/",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"profile",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Patch profile",
 					"request": {
 						"method": "PATCH",
@@ -137,6 +118,25 @@
 							"path": [
 								"profile",
 								"d86220de-d8d2-4e13-b016-e59c8ca1c295"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete profile by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/profile/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								""
 							]
 						}
 					},
@@ -213,55 +213,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete task by ID",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"task",
-								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update task by ID",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"UpdatedTitle\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"task",
-								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Assign",
 					"request": {
 						"method": "PUT",
@@ -297,6 +248,295 @@
 								"task",
 								"unassign",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update task by ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"UpdatedTitle\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete task by ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/8db6e6e2-9053-4cfe-9d1d-95776f2f74d9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"8db6e6e2-9053-4cfe-9d1d-95776f2f74d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move to TODO",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14/todo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
+								"todo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move to IN PROGRESS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14/progress",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
+								"progress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move to DONE",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/task/b3ef3af8-74fc-4a09-8354-63fb20ec4a14/done",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"task",
+								"b3ef3af8-74fc-4a09-8354-63fb20ec4a14",
+								"done"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SprintController",
+			"item": [
+				{
+					"name": "Create Sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sprintName\": \"My first Sprint\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/sprint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Sprint By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint/9225aafa-7e82-4941-a8dd-635d2592cc0b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"9225aafa-7e82-4941-a8dd-635d2592cc0b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Sprints",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add task to Sprint",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint/067f9e4b-95e9-4052-be77-9a8da5d4eaab/add/8db6e6e2-9053-4cfe-9d1d-95776f2f74d9",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"067f9e4b-95e9-4052-be77-9a8da5d4eaab",
+								"add",
+								"8db6e6e2-9053-4cfe-9d1d-95776f2f74d9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove task from Sprint",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint/b9474589-75bb-48bf-946c-e0f7a8a77fa7/remove/6a16ddf1-182d-4062-bd5d-bab51df2a101",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"b9474589-75bb-48bf-946c-e0f7a8a77fa7",
+								"remove",
+								"6a16ddf1-182d-4062-bd5d-bab51df2a101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Sprint name",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"sprintName\": \"My second Sprint\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/sprint/b9474589-75bb-48bf-946c-e0f7a8a77fa7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"b9474589-75bb-48bf-946c-e0f7a8a77fa7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Sprint",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint/ed8b3ef6-3f70-4604-a300-da060ef4a60d",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"ed8b3ef6-3f70-4604-a300-da060ef4a60d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close sprint",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/sprint/9225aafa-7e82-4941-a8dd-635d2592cc0b",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sprint",
+								"9225aafa-7e82-4941-a8dd-635d2592cc0b"
 							]
 						}
 					},

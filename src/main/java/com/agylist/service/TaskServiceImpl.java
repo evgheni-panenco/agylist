@@ -1,10 +1,5 @@
 package com.agylist.service;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.stereotype.Service;
-
 import com.agylist.dto.TaskDTO;
 import com.agylist.dto.UpdateTaskRequest;
 import com.agylist.dto.mapper.TaskMapper;
@@ -12,12 +7,16 @@ import com.agylist.dto.mapper.UpdateTaskRequestMapper;
 import com.agylist.exception.ResourceAlreadyExist;
 import com.agylist.exception.ResourceNotFoundException;
 import com.agylist.model.Profile;
+import com.agylist.model.Status;
 import com.agylist.model.Task;
 import com.agylist.repository.ProfileRepository;
 import com.agylist.repository.TaskRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.val;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -85,5 +84,12 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public void unassigneTasks(final Profile profile) {
 		taskRepository.findByAssignee(profile).forEach(task -> unassigne(task.getTaskId().toString()));
+	}
+
+	@Override
+	public Task changeStatus(String taskId, Status newStatus) {
+		val task = this.getTaskById(taskId);
+		task.setStatus(newStatus);
+		return taskRepository.save(task);
 	}
 }

@@ -1,10 +1,10 @@
 package com.agylist.service;
 
-import java.util.List;
-
 import com.agylist.dto.SprintDTO;
 import com.agylist.dto.UpdateSprintRequest;
 import com.agylist.model.Sprint;
+
+import java.util.List;
 
 public interface SprintService {
 
@@ -21,4 +21,6 @@ public interface SprintService {
 	Sprint addTaskToSprint(String sprintId, String taskId);
 
 	Sprint removeTaskFromSprint(String sprintId, String taskId);
+
+  void close(String sprintId);
 }

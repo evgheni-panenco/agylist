@@ -95,7 +95,7 @@ public class SprintController {
 		return ResponseEntity.ok(sprintModelAssembler.toModel(sprint));
 	}
 
-	@PutMapping(REMOVE_TASK)
+	@DeleteMapping(REMOVE_TASK)
 	public ResponseEntity<EntityModel<Sprint>> removeTaskFromSprint(
 			@PathVariable @Pattern(regexp = UUID_PATTERN) final String sprintId,
 			@PathVariable @Pattern(regexp = UUID_PATTERN) final String taskId) {
@@ -103,5 +103,14 @@ public class SprintController {
 		val sprint = sprintService.removeTaskFromSprint(sprintId, taskId);
 		log.info("Task has been removed from Sprint");
 		return ResponseEntity.ok(sprintModelAssembler.toModel(sprint));
+	}
+
+	@PostMapping(ONE_URL)
+	public ResponseEntity<Void> closeSprint(
+			@PathVariable @Pattern(regexp = UUID_PATTERN) final String sprintId) {
+		log.info("Closing the Spring with ID - " + sprintId);
+		sprintService.close(sprintId);
+		log.info("Spring with ID - {}, has been closed", sprintId);
+		return ResponseEntity.noContent().build();
 	}
 }

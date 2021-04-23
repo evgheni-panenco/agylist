@@ -1,11 +1,12 @@
 package com.agylist.service;
 
-import java.util.List;
-
 import com.agylist.dto.TaskDTO;
 import com.agylist.dto.UpdateTaskRequest;
 import com.agylist.model.Profile;
+import com.agylist.model.Status;
 import com.agylist.model.Task;
+
+import java.util.List;
 
 public interface TaskService {
 	Task save(TaskDTO task);
@@ -23,4 +24,6 @@ public interface TaskService {
 	Task unassigne(final String taskId);
 
 	void unassigneTasks(final Profile profileId);
+
+  Task changeStatus(String taskId, Status todo);
 }
