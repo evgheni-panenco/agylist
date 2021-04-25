@@ -37,7 +37,11 @@ public class SprintServiceImpl implements SprintService {
 	}
 
 	private Sprint setUpSprint(final String sprintName) {
-		return Sprint.builder().sprintName(sprintName).createdTimestamp(OffsetDateTime.now().withNano(0)).build();
+		return Sprint.builder()
+						.sprintName(sprintName)
+						.createdTimestamp(OffsetDateTime.now().withNano(0))
+						.status(SprintStatus.OPEN)
+						.build();
 	}
 
 	@Override
